@@ -14,20 +14,19 @@ const API_URL = "http://127.0.0.1:8000/api/livros/";
 
 function App() {
 
-    // Lista de livros
+  
     const [livros, setLivros] = useState([]);
 
-    // Texto digitado na pesquisa
+    
     const [busca, setBusca] = useState("");
 
-    // Controla se o formulário está aberto
+    
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
-    // Guarda o livro que está sendo editado
-    // null = estamos cadastrando um livro novo
+    
     const [livroEditando, setLivroEditando] = useState(null);
 
-    // Controla o carregamento da lista
+    
     const [carregando, setCarregando] = useState(true);
 
 
@@ -76,10 +75,10 @@ function App() {
 
     function abrirNovoLivro() {
 
-        // Garante que não existe livro sendo editado
+      
         setLivroEditando(null);
 
-        // Abre o formulário
+        
         setMostrarFormulario(true);
     }
 
@@ -110,25 +109,24 @@ function App() {
             }
 
 
-            // Livro criado pelo Django
+          
             const livroCriado = await resposta.json();
 
 
-            // Adiciona o novo livro no estado do React
-            // Sem recarregar a página
+            
             setLivros((livrosAtuais) => [
 
-                ...livrosAtuais,
+                ...livrosAtuais, // ... pegue todos que jáexixtem 
 
                 livroCriado
 
             ]);
 
 
-            // Fecha o formulário
+           
             setMostrarFormulario(false);
 
-            // Garante que não existe livro em edição
+           
             setLivroEditando(null);
 
 
@@ -171,8 +169,7 @@ function App() {
             }
 
 
-            // Remove o livro do estado
-            // Sem atualizar/recarregar a página
+           // deleta sem recarregar a página 
             setLivros((livrosAtuais) =>
 
                 livrosAtuais.filter(
@@ -196,10 +193,10 @@ function App() {
 
     function editarLivro(livro) {
 
-        // Guarda o livro que será editado
+       
         setLivroEditando(livro);
 
-        // Abre o formulário
+     
         setMostrarFormulario(true);
     }
 
@@ -234,12 +231,11 @@ function App() {
             }
 
 
-            // Livro atualizado que voltou da API
+           
             const livroAtualizadoApi = await resposta.json();
 
 
-            // Atualiza somente o livro que foi editado
-            // Sem recarregar a página
+          
             setLivros((livrosAtuais) =>
 
                 livrosAtuais.map((livro) =>
@@ -253,10 +249,10 @@ function App() {
             );
 
 
-            // Fecha o formulário
+         
             setMostrarFormulario(false);
 
-            // Limpa o livro em edição
+        
             setLivroEditando(null);
 
 
@@ -408,12 +404,12 @@ function App() {
 
 
                         <h3>
-                            Nenhum livro encontrado
+                            Esta página se perdeu em uma boa história e nunca mais voltou.
                         </h3>
 
 
                         <p>
-                            Cadastre um livro ou tente outra pesquisa.
+                            Sistema fora do ar, verifique sua conexão e tente novamente.
                         </p>
 
                     </div>
@@ -477,6 +473,10 @@ function App() {
     );
 
 }
+
+
+export default App;
+
 
 
 export default App;
